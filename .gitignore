@@ -1,8 +1,8 @@
-.env
 
-node_modules
-.env
-
+/node_modules
+/.env
+/generated
+/artifacts
 # Hardhat files
 /cache
 /artifacts
