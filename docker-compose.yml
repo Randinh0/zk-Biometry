@@ -1,0 +1,21 @@
+services:
+  hardhat:
+    build: .
+    ports:
+      - "8545:8545"
+    volumes:
+      - ./:/app
+    command: sh -c "npx hardhat node --hostname 0.0.0.0 & sleep 5 && npx hardhat run scripts/deploy.js --network localhost && tail -f /dev/null"
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - hardhat
