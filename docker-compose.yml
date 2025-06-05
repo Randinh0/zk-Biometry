@@ -1,21 +1,38 @@
 services:
-  hardhat:
-    build: .
+  contracts:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8545:8545"
     volumes:
-      - ./:/app
-    command: sh -c "npx hardhat node --hostname 0.0.0.0 & sleep 5 && npx hardhat run scripts/deploy.js --network localhost && tail -f /dev/null"
+      - ./contracts:/app/contracts
+      - ./scripts:/app/scripts
+      - ./hardhat.config.js:/app/hardhat.config.js
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "3001:3001"
+    environment:
+      - INFURA_URL=https://sepolia.infura.io/v3/8627963ce80140deab3f0fee340e83bc
+      - CONTRACT_ADDRESS=0x4CAc7D05a3D4FC2b2E7D1D2c81179e5fe2155174
+      - PORT=3001
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    working_dir: /app
-    command: npm start
     environment:
-      - CHOKIDAR_USEPOLLING=true
+      - REACT_APP_API_URL=http://localhost:3001
     depends_on:
-      - hardhat
+      - backend
+    restart: unless-stopped
