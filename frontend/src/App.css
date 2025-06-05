@@ -1,38 +1,93 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282c34; /* Fondo oscuro similar al header */
+}
+
+.login-box {
+  background: #222;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+
+.login-box input {
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.login-box button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 6px;
+  background: #27A603;
+  color: #222;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.login-box button:hover {
+  background: #27A603;
+}
+
+.login-box h2 {
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  min-height: 2.5rem; /* Para evitar saltos de línea durante la animación */
+  font-size: 2rem;
+  color: #27A603; /* Color azul React para el texto animado */
+}
+
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Capa del fondo */
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Valor bajo para el fondo */
+}
+
+/* Capa del contenido */
+.content-layer {
+  position: relative; /* Importante para z-index */
+  z-index: 1; /* Valor alto para estar sobre el fondo */
+  width: 100%;
+  height: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Ajustes para el login-box (opcional) */
+.login-box {
+  background: rgba(20, 20, 30, 0.85); /* Fondo semi-transparente */
+  backdrop-filter: blur(4px); /* Efecto de desenfoque */
+  border: 1px solid rgba(0, 255, 100, 0.2); /* Borde neón */
+  /* ... mantén tus otros estilos ... */
 }
