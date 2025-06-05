@@ -1,6 +1,12 @@
-import logo from './logo.svg';
+
+import React from 'react';
 import './App.css';
+<<<<<<< HEAD
 import useContractEvents from './hooks/useContractEvents';
+=======
+import Login from './Login';
+import LetterGlitch from './backgrounds/LetterGlitch/LetterGlitch.jsx';
+>>>>>>> feat/front-end
 
 function App() {
   useContractEvents(
@@ -14,6 +20,7 @@ function App() {
   );
 
   return (
+<<<<<<< HEAD
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -29,9 +36,22 @@ function App() {
           Learn React
         </a>
       </header>
+=======
+    <div className="app-container">
+      <div className="background-layer">
+        <LetterGlitch />
+      </div>
+      <div className="content-layer">
+        <Login />
+      </div>
+>>>>>>> feat/front-end
     </div>
   );
 }
 
+<<<<<<< HEAD
 export default App;
 
+=======
+export default App;
+>>>>>>> feat/front-end
