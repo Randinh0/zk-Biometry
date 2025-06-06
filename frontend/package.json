@@ -7,8 +7,11 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "circomlibjs": "^0.1.7",
+    "face-api.js": "^0.22.2",
     "framer-motion": "^12.16.0",
     "ogl": "^1.0.11",
+    "poseidon-lite": "^0.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-scripts": "5.0.1",
@@ -18,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "download-models": "wget https://github.com/justadudewhohacks/face-api.js/releases/download/v0.22.0/models.zip && unzip models.zip -d public/models && rm models.zip"
   },
   "eslintConfig": {
     "extends": [
