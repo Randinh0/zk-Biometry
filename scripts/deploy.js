@@ -1,3 +1,6 @@
+const { ethers } = require("hardhat");
+
+
 async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Deploying contracts with account:", deployer.address);
@@ -7,6 +10,11 @@ async function main() {
     const verifier = await Verifier.deploy();
     console.log("Verifier deployed at:", verifier.target);
   
+    // Desplegar Verifier.sol primero
+    const Identity = await ethers.getContractFactory("Identity");
+    const identity = await Identity.deploy();
+    console.log("Identity deployed at:", identity.target);
+    
     // Desplegar FaceScannerZKAuth.sol y pasar la dirección del Verifier si hace falta
     const FacescannerZKAuth = await ethers.getContractFactory("FacescannerZKAuth");
     const faceScanner = await FacescannerZKAuth.deploy();

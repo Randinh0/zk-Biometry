@@ -3,8 +3,9 @@ pragma solidity ^0.8.20;
 
 // Importar el verificador generado por snarkjs (lo añades luego)
 import "./Verifier.sol"; // Este será generado por snarkjs
+import "./identity.sol";
 
-contract FacescannerZKAuth is Groth16Verifier {
+contract App is Groth16Verifier, Identity {
     mapping(address => bytes32) public registeredHash;
 
     event Registered(address indexed user, bytes32 hash);
@@ -22,7 +23,7 @@ contract FacescannerZKAuth is Groth16Verifier {
         uint[2] calldata a,
         uint[2][2] calldata b,
         uint[2] calldata c,
-        uint[1] calldata input // hash del template (público)
+        uint[2] calldata input // <-- Cambia aquí a [2]
     ) external returns (bool) {
         require(registeredHash[msg.sender] != 0, "No registered hash");
         require(registeredHash[msg.sender] == bytes32(input[0]), "Hash mismatch");
